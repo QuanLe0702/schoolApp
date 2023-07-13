@@ -38,6 +38,7 @@ dependencies:
   sizer: ^2.0.15
   google_fonts: ^4.0.4
   flutter_svg: ^2.0.5
+  flutter_secure_storage: ^8.0.0
 
 dev_dependencies:
   flutter_test:
