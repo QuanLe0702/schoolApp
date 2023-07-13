@@ -1,8 +1,11 @@
+import 'dart:convert';
+
 import 'package:school/components/custom_buttons.dart';
 import 'package:school/constants.dart';
 import 'package:school/screens/home_screen/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
+import 'package:http/http.dart' as http;
 
 late bool _passwordVisible;
 
@@ -16,6 +19,8 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   //validate our form now
   final _formKey = GlobalKey<FormState>();
+  TextEditingController emailtxt = TextEditingController();
+  TextEditingController passtxt = TextEditingController();
 
   //changes current state
   @override
@@ -54,7 +59,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     height: 20.h,
                     width: 40.w,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: kDefaultPadding / 2,
                   ),
                 ],
@@ -80,10 +85,9 @@ class _LoginScreenState extends State<LoginScreen> {
                         sizedBox,
                         DefaultButton(
                           onPress: () {
-                            if (_formKey.currentState!.validate()) {
-                              Navigator.pushNamedAndRemoveUntil(context,
-                                  HomeScreen.routeName, (route) => false);
-                            }
+                            // if (_formKey.currentState!.validate()) {
+                            submitData();
+                            // }
                           },
                           title: 'SIGN IN',
                           iconData: Icons.arrow_forward_outlined,
@@ -119,10 +123,11 @@ class _LoginScreenState extends State<LoginScreen> {
       textAlign: TextAlign.start,
       keyboardType: TextInputType.emailAddress,
       style: kInputTextStyle,
-      decoration: InputDecoration(
+      decoration: const InputDecoration(
         labelText: 'User',
         floatingLabelBehavior: FloatingLabelBehavior.always,
       ),
+      controller: emailtxt,
       validator: (value) {
         //for validation
         RegExp regExp = new RegExp(emailPattern);
@@ -143,6 +148,7 @@ class _LoginScreenState extends State<LoginScreen> {
       textAlign: TextAlign.start,
       keyboardType: TextInputType.visiblePassword,
       style: kInputTextStyle,
+      controller: passtxt,
       decoration: InputDecoration(
         labelText: 'Password',
         floatingLabelBehavior: FloatingLabelBehavior.always,
@@ -166,5 +172,39 @@ class _LoginScreenState extends State<LoginScreen> {
         }
       },
     );
+  }
+
+  Future submitData() async {
+    final email = emailtxt.text;
+    final password = passtxt.text;
+    final body = {"username": email, "password": password};
+    final uri = Uri.parse('http://10.0.2.2:8080/auth/login');
+    final res = await http.post(uri, body: jsonEncode(body));
+    // print(res.statusCode);
+    if (res.statusCode == 200) {
+      Navigator.pushNamedAndRemoveUntil(
+          context, HomeScreen.routeName, (route) => false);
+    } else {
+      // ignore: use_build_context_synchronously
+      showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: const Text("Error"),
+              content: const Text(
+                "Wrong username or password",
+                style: TextStyle(color: Colors.black, fontSize: 20),
+              ),
+              actions: [
+                ElevatedButton(
+                  child: const Text("Ok"),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                )
+              ],
+            );
+          });
+    }
   }
 }
