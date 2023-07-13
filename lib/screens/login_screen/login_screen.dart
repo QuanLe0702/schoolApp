@@ -6,6 +6,9 @@ import 'package:school/screens/home_screen/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 import 'package:http/http.dart' as http;
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+
+import '../../models/LoginRes.dart';
 
 late bool _passwordVisible;
 
@@ -179,9 +182,19 @@ class _LoginScreenState extends State<LoginScreen> {
     final password = passtxt.text;
     final body = {"username": email, "password": password};
     final uri = Uri.parse('http://10.0.2.2:8080/auth/login');
-    final res = await http.post(uri, body: jsonEncode(body));
+    final res = await http.post(uri,
+        body: jsonEncode(body), headers: {'Content-Type': 'application/json'});
     // print(res.statusCode);
     if (res.statusCode == 200) {
+      final storage = new FlutterSecureStorage();
+      // print(jsonDecode(res.body));
+      LoginRes loginres = LoginRes.fromJson(jsonDecode(res.body));
+      storage.write(key: 'token', value: loginres.token);
+      storage.write(key: 'refreshToken', value: loginres.refreshToken);
+      storage.write(key: 'roles', value: loginres.roles);
+      storage.write(key: 'uid', value: loginres.uid.toString());
+      storage.write(key: 'id', value: loginres.id.toString());
+      // print(loginres.token);
       Navigator.pushNamedAndRemoveUntil(
           context, HomeScreen.routeName, (route) => false);
     } else {
