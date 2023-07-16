@@ -20,7 +20,6 @@ class News {
     required this.isActive,
   });
 
-//gọi
   News.fromMap(Map<String, dynamic> map) {
     id = map['id'];
     title = map['title'];
@@ -32,7 +31,6 @@ class News {
     isActive = map['isActive'];
   }
 
-//lưu
   Map<String, dynamic> toMap() {
     return {
       'id': id,
