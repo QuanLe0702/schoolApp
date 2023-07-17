@@ -1,3 +1,4 @@
+import 'package:school/screens/Document_screen/document_screen.dart';
 import 'package:school/screens/News_screen/NewsListScreen.dart';
 import 'package:school/screens/login_screen/login_screen.dart';
 import 'package:school/screens/splash_screen/splash_screen.dart';
@@ -20,4 +21,5 @@ Map<String, WidgetBuilder> routes = {
   DateSheetScreen.routeName: (context) => DateSheetScreen(),
   NewsScreen.routeName: (context) => NewsScreen(),
   NewsListScreen.routeName: (context) => const NewsListScreen(),
+  DocumentScreen.routeName: (context) => const DocumentScreen(),
 };

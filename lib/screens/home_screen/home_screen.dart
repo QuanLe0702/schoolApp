@@ -1,5 +1,6 @@
 import 'package:school/components/menu_bottom.dart';
 import 'package:school/constants.dart';
+import 'package:school/screens/Document_screen/document_screen.dart';
 import 'package:school/screens/News_screen/NewsListScreen.dart';
 import 'package:school/screens/News_screen/news_screen.dart';
 import 'package:school/screens/assignment_screen/assignment_screen.dart';
@@ -118,7 +119,7 @@ class HomeScreen extends StatelessWidget {
                         HomeCard(
                           onPress: () {
                             Navigator.pushNamed(
-                                context, NewsListScreen.routeName);
+                                context, DocumentScreen.routeName);
                           },
                           icon: 'assets/icons/holiday.svg',
                           title: 'Tài liệu',
