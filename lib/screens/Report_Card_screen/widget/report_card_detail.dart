@@ -1,14 +1,13 @@
-import 'package:school/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:school/constants.dart';
-import 'package:sizer/sizer.dart';
 
-class AssignmentDetailRow extends StatelessWidget {
-  const AssignmentDetailRow(
+class ReportCardDetailRow extends StatelessWidget {
+  const ReportCardDetailRow(
       {Key? key, required this.title, required this.statusValue})
       : super(key: key);
   final String title;
   final String statusValue;
+
   @override
   Widget build(BuildContext context) {
     return Row(

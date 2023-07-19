@@ -1,12 +1,53 @@
+import 'dart:convert';
 import 'package:school/constants.dart';
-import 'package:school/screens/assignment_screen/data/assignment_data.dart';
+import 'dart:io';
+import 'package:intl/intl.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:sizer/sizer.dart';
-import 'widgets/assignment_widgets.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:http/http.dart' as http;
+import 'package:school/models/ReportCard.dart';
+import 'widget/report_card_detail.dart';
 
-class AssignmentScreen extends StatelessWidget {
-  const AssignmentScreen({Key? key}) : super(key: key);
-  static String routeName = 'AssignmentScreen';
+class ReportCardScreen extends StatefulWidget {
+  static String routeName = 'ReportCardScreen';
+  const ReportCardScreen({Key? key}) : super(key: key);
+
+  @override
+  State<ReportCardScreen> createState() => _ReportCardScreenState();
+}
+
+class _ReportCardScreenState extends State<ReportCardScreen> {
+  List<ReportCard> reportCardList = [];
+  List<ReportCard> filteredReportCardList = [];
+  String? token;
+
+  @override
+  void initState() {
+    super.initState();
+    fetchData();
+  }
+
+  Future<void> fetchData() async {
+    FlutterSecureStorage storage = const FlutterSecureStorage();
+    token = await storage.read(key: 'token');
+    final response = await http
+        .get(Uri.parse('http://10.0.2.2:8080/api/report_cards'), headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer $token'
+    });
+    if (response.statusCode == 200) {
+      final List<dynamic> jsonData =
+          jsonDecode(utf8.decode(response.bodyBytes));
+      setState(() {
+        reportCardList =
+            jsonData.map((item) => ReportCard.fromMap(item)).toList();
+        filteredReportCardList = reportCardList;
+      });
+    } else {
+      throw Exception('Failed');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,8 +65,9 @@ class AssignmentScreen extends StatelessWidget {
               ),
               child: ListView.builder(
                   padding: const EdgeInsets.all(kDefaultPadding),
-                  itemCount: assignment.length,
-                  itemBuilder: (context, int index) {
+                  itemCount: filteredReportCardList.length,
+                  itemBuilder: (context, index) {
+                    final reportCard = filteredReportCardList[index];
                     return Container(
                       margin: const EdgeInsets.only(bottom: kDefaultPadding),
                       child: Column(
@@ -49,7 +91,7 @@ class AssignmentScreen extends StatelessWidget {
                               children: [
                                 kHalfSizedBox,
                                 Text(
-                                  assignment[index].topicName,
+                                  reportCard.violate,
                                   style: Theme.of(context)
                                       .textTheme
                                       .titleMedium!
@@ -59,19 +101,15 @@ class AssignmentScreen extends StatelessWidget {
                                       ),
                                 ),
                                 kHalfSizedBox,
-                                AssignmentDetailRow(
-                                  title: 'Vi phạm',
-                                  statusValue: assignment[index].assignDate,
-                                ),
-                                kHalfSizedBox,
-                                AssignmentDetailRow(
+                                ReportCardDetailRow(
                                   title: 'Mô tả',
-                                  statusValue: assignment[index].lastDate,
+                                  statusValue: reportCard.description,
                                 ),
                                 kHalfSizedBox,
-                                AssignmentDetailRow(
+                                ReportCardDetailRow(
                                   title: 'Ngày',
-                                  statusValue: assignment[index].status,
+                                  statusValue: DateFormat('yyyy-MM-dd HH:mm')
+                                      .format(reportCard.date),
                                 ),
                               ],
                             ),
