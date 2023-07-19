@@ -4,7 +4,6 @@ import 'package:school/screens/Document_screen/document_screen.dart';
 import 'package:school/screens/News_screen/NewsListScreen.dart';
 import 'package:school/screens/News_screen/news_screen.dart';
 import 'package:school/screens/Report_Card_screen/report_card_screen.dart';
-import 'package:school/screens/assignment_screen/assignment_screen.dart';
 import 'package:school/screens/datesheet_screen/datesheet_screen.dart';
 import 'package:school/screens/fee_screen/fee_screen.dart';
 import 'package:school/screens/my_profile/my_profile.dart';
@@ -118,57 +117,12 @@ class HomeScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         HomeCard(
-                          onPress: () {},
-                          icon: 'assets/icons/result.svg',
-                          title: 'Evaluation record',
-                        ),
-                        HomeCard(
                           onPress: () {
                             Navigator.pushNamed(
                                 context, DateSheetScreen.routeName);
                           },
                           icon: 'assets/icons/datesheet.svg',
                           title: 'Xem TKB',
-                        ),
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        HomeCard(
-                          onPress: () {},
-                          icon: 'assets/icons/ask.svg',
-                          title: 'Class',
-                        ),
-                        HomeCard(
-                          onPress: () {},
-                          icon: 'assets/icons/gallery.svg',
-                          title: '',
-                        ),
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        HomeCard(
-                          onPress: () {},
-                          icon: 'assets/icons/resume.svg',
-                          title: 'Leave\nApplication',
-                        ),
-                        HomeCard(
-                          onPress: () {},
-                          icon: 'assets/icons/lock.svg',
-                          title: 'Change\nPassword',
-                        ),
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        HomeCard(
-                          onPress: () {},
-                          icon: 'assets/icons/event.svg',
-                          title: '',
                         ),
                         HomeCard(
                           onPress: () {},

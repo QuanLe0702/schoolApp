@@ -33,11 +33,13 @@ class _ReportCardScreenState extends State<ReportCardScreen> {
     FlutterSecureStorage storage = const FlutterSecureStorage();
     token = await storage.read(key: 'token');
     studentId = await storage.read(key: 'id');
-    final response = await http
-        .get(Uri.parse('http://10.0.2.2:8080/api/report_cards'), headers: {
-      'Content-Type': 'application/json',
-      'Authorization': 'Bearer $token'
-    });
+    final response = await http.get(
+        Uri.parse(
+            'http://10.0.2.2:8080/api/report_cards/search/studentId?id=$studentId'),
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer $token'
+        });
     if (response.statusCode == 200) {
       final List<dynamic> jsonData =
           jsonDecode(utf8.decode(response.bodyBytes));
