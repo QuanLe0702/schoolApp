@@ -21,6 +21,7 @@ class _ReportCardScreenState extends State<ReportCardScreen> {
   List<ReportCard> reportCardList = [];
   List<ReportCard> filteredReportCardList = [];
   String? token;
+  String? studentId;
 
   @override
   void initState() {
@@ -31,6 +32,7 @@ class _ReportCardScreenState extends State<ReportCardScreen> {
   Future<void> fetchData() async {
     FlutterSecureStorage storage = const FlutterSecureStorage();
     token = await storage.read(key: 'token');
+    studentId = await storage.read(key: 'id');
     final response = await http
         .get(Uri.parse('http://10.0.2.2:8080/api/report_cards'), headers: {
       'Content-Type': 'application/json',

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:school/models/User.dart';
 
 class Student {
   int? id;
@@ -12,7 +11,6 @@ class Student {
   late String status;
   late String image;
   // late Classes className;
-  late User user;
 
   Student({
     this.id,
@@ -24,7 +22,6 @@ class Student {
     required this.phone,
     required this.status,
     this.image = '',
-    required this.user,
   });
 
   Student.fromMap(Map<String, dynamic> map) {
@@ -37,7 +34,6 @@ class Student {
     phone = map['phone'];
     status = map['status'];
     image = map['image'];
-    user = User.fromMap(map['user']);
   }
 
   Map<String, dynamic> toMap() {
@@ -51,7 +47,6 @@ class Student {
       'phone': phone,
       'status': status,
       'image': image,
-      'user': user.toMap(),
     };
   }
 }

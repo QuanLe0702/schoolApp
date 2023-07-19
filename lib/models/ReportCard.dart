@@ -1,11 +1,14 @@
 import 'dart:ffi';
 
+import 'package:school/models/AcademicYear.dart';
+import 'package:school/models/Student.dart';
+
 class ReportCard {
-  late Long studentId;
+  late Student studentId;
   late String violate;
   late String description;
   late DateTime date;
-  late Long academicYearId;
+  late AcademicYear academicYearId;
 
   ReportCard({
     required this.studentId,
@@ -16,11 +19,11 @@ class ReportCard {
   });
 
   ReportCard.fromMap(Map<String, dynamic> map) {
-    studentId = map['studentId'];
+    studentId = Student.fromMap(map['student']);
     violate = map['violate'];
     description = map['description'];
     date = DateTime.parse(map['date']);
-    academicYearId = map['academicYearId'];
+    academicYearId = AcademicYear.fromMap(map['academicYear']);
   }
 
   Map<String, dynamic> toMap() {
