@@ -90,9 +90,9 @@ class _LoginScreenState extends State<LoginScreen> {
                         sizedBox,
                         DefaultButton(
                           onPress: () {
-                            // if (_formKey.currentState!.validate()) {
-                            submitData();
-                            // }
+                            if (_formKey.currentState!.validate()) {
+                              submitData();
+                            }
                           },
                           title: 'SIGN IN',
                           iconData: Icons.arrow_forward_outlined,
