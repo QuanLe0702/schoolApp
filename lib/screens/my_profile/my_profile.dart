@@ -11,21 +11,18 @@ class MyProfileScreen extends StatelessWidget {
     return Scaffold(
       //app bar theme for tablet
       appBar: AppBar(
-        title: Text('My Profile'),
+        title: const Text('My Profile'),
         actions: [
           InkWell(
-            onTap: () {
-              //send report to school management, in case if you want some changes to your profile
-            },
             child: Container(
-              padding: EdgeInsets.only(right: kDefaultPadding / 2),
+              padding: const EdgeInsets.only(right: kDefaultPadding / 2),
               child: Row(
                 children: [
-                  Icon(Icons.report_gmailerrorred_outlined),
+                  const Icon(Icons.report_gmailerrorred_outlined),
                   kHalfWidthSizedBox,
                   Text(
                     'Change profile',
-                    style: Theme.of(context).textTheme.subtitle2,
+                    style: Theme.of(context).textTheme.titleSmall,
                   ),
                 ],
               ),
@@ -52,7 +49,7 @@ class MyProfileScreen extends StatelessWidget {
                         SizerUtil.deviceType == DeviceType.tablet ? 12.w : 13.w,
                     backgroundColor: kSecondaryColor,
                     backgroundImage:
-                        AssetImage('assets/images/student_profile.jpeg'),
+                        const AssetImage('assets/images/student.png'),
                   ),
                   kWidthSizedBox,
                   Column(
@@ -60,48 +57,15 @@ class MyProfileScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        'Quan',
-                        style: Theme.of(context).textTheme.subtitle1,
+                        'Student: ',
+                        style: Theme.of(context).textTheme.titleMedium,
                       ),
-                      Text('Class 12A5',
-                          style: Theme.of(context).textTheme.subtitle2),
+                      Text('Class: ',
+                          style: Theme.of(context).textTheme.titleMedium),
                     ],
                   )
                 ],
               ),
-            ),
-            sizedBox,
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                ProfileDetailRow(
-                    title: 'Registration Number', value: '2020-ASDF-2021'),
-                ProfileDetailRow(title: 'Academic Year', value: '2020-2021'),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                ProfileDetailRow(title: 'Admission Class', value: 'X-II'),
-                ProfileDetailRow(title: 'Admission Number', value: '000126'),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                ProfileDetailRow(
-                    title: 'Date of Admission', value: '1 Aug, 2020'),
-                ProfileDetailRow(title: 'Date of Birth', value: '3 May 1998'),
-              ],
-            ),
-            sizedBox,
-            ProfileDetailColumn(
-              title: 'Email',
-              value: 'aisha12@gmail.com',
-            ),
-            ProfileDetailColumn(
-              title: 'Phone Number',
-              value: '+923066666666',
             ),
           ],
         ),
@@ -128,7 +92,7 @@ class ProfileDetailRow extends StatelessWidget {
             children: [
               Text(
                 title,
-                style: Theme.of(context).textTheme.subtitle1!.copyWith(
+                style: Theme.of(context).textTheme.titleMedium!.copyWith(
                       color: kTextBlackColor,
                       fontSize: SizerUtil.deviceType == DeviceType.tablet
                           ? 7.sp
@@ -136,11 +100,11 @@ class ProfileDetailRow extends StatelessWidget {
                     ),
               ),
               kHalfSizedBox,
-              Text(value, style: Theme.of(context).textTheme.caption),
+              Text(value, style: Theme.of(context).textTheme.bodySmall),
               kHalfSizedBox,
               SizedBox(
                 width: 35.w,
-                child: Divider(
+                child: const Divider(
                   thickness: 1.0,
                 ),
               ),
@@ -174,7 +138,7 @@ class ProfileDetailColumn extends StatelessWidget {
             children: [
               Text(
                 title,
-                style: Theme.of(context).textTheme.subtitle1!.copyWith(
+                style: Theme.of(context).textTheme.titleMedium!.copyWith(
                       color: kTextBlackColor,
                       fontSize: SizerUtil.deviceType == DeviceType.tablet
                           ? 7.sp
@@ -182,11 +146,11 @@ class ProfileDetailColumn extends StatelessWidget {
                     ),
               ),
               kHalfSizedBox,
-              Text(value, style: Theme.of(context).textTheme.caption),
+              Text(value, style: Theme.of(context).textTheme.bodySmall),
               kHalfSizedBox,
               SizedBox(
                 width: 92.w,
-                child: Divider(
+                child: const Divider(
                   thickness: 1.0,
                 ),
               )
