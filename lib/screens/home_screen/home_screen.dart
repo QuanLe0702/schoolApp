@@ -3,6 +3,7 @@ import 'package:school/constants.dart';
 import 'package:school/screens/Document_screen/document_screen.dart';
 import 'package:school/screens/News_screen/NewsListScreen.dart';
 import 'package:school/screens/Report_Card_screen/report_card_screen.dart';
+import 'package:school/screens/Score_screen/score_screen.dart';
 import 'package:school/screens/datesheet_screen/datesheet_screen.dart';
 import 'package:school/screens/my_profile/my_profile.dart';
 import 'package:flutter/material.dart';
@@ -32,7 +33,7 @@ class HomeScreen extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    const Column(
+                    Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         StudentName(
@@ -71,7 +72,9 @@ class HomeScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         HomeCard(
-                          onPress: () {},
+                          onPress: () {
+                            Navigator.pushNamed(context, ScoreView.routeName);
+                          },
                           icon: 'assets/icons/quiz.svg',
                           title: 'Xem điểm',
                         ),

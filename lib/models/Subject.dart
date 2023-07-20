@@ -3,7 +3,7 @@ class Subject {
   late String name;
 
   Subject({
-    this.id,
+    required this.id,
     required this.name,
   });
 
@@ -17,5 +17,10 @@ class Subject {
       'id': id,
       'name': name,
     };
+  }
+
+  @override
+  String toString() {
+    return 'Subject{id: $id, name: $name}';
   }
 }
