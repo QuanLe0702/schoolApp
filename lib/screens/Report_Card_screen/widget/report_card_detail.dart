@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:school/constants.dart';
 
 class ReportCardDetailRow extends StatelessWidget {
   const ReportCardDetailRow(
@@ -17,15 +16,15 @@ class ReportCardDetailRow extends StatelessWidget {
           title,
           style: Theme.of(context)
               .textTheme
-              .bodySmall!
-              .copyWith(color: kTextBlackColor, fontWeight: FontWeight.w900),
+              .titleSmall!
+              .copyWith(color: Colors.black, fontWeight: FontWeight.w900),
         ),
         Text(
           statusValue,
           style: Theme.of(context)
               .textTheme
-              .bodySmall!
-              .copyWith(color: kTextBlackColor, fontWeight: FontWeight.w900),
+              .titleSmall!
+              .copyWith(color: Colors.black, fontWeight: FontWeight.w900),
         ),
       ],
     );
