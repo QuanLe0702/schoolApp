@@ -2,10 +2,8 @@ import 'package:school/components/menu_bottom.dart';
 import 'package:school/constants.dart';
 import 'package:school/screens/Document_screen/document_screen.dart';
 import 'package:school/screens/News_screen/NewsListScreen.dart';
-import 'package:school/screens/News_screen/news_screen.dart';
 import 'package:school/screens/Report_Card_screen/report_card_screen.dart';
 import 'package:school/screens/datesheet_screen/datesheet_screen.dart';
-import 'package:school/screens/fee_screen/fee_screen.dart';
 import 'package:school/screens/my_profile/my_profile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -27,7 +25,7 @@ class HomeScreen extends StatelessWidget {
           Container(
             width: 100.w,
             height: 25.h,
-            padding: EdgeInsets.all(kDefaultPadding),
+            padding: const EdgeInsets.all(kDefaultPadding),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -38,17 +36,13 @@ class HomeScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         StudentName(
-                          studentName: 'Quan',
+                          studentName: 'Student',
                         ),
-                        kHalfSizedBox,
-                        StudentClass(studentClass: 'Class 12A5| Roll no: 12'),
-                        kHalfSizedBox,
-                        StudentYear(studentYear: '2022-2023'),
                       ],
                     ),
                     kHalfSizedBox,
                     StudentPicture(
-                        picAddress: 'assets/images/student_profile.jpeg',
+                        picAddress: 'assets/images/student.png',
                         onPress: () {
                           // go to profile detail screen here
                           Navigator.pushNamed(
@@ -70,7 +64,7 @@ class HomeScreen extends StatelessWidget {
               ),
               child: SingleChildScrollView(
                 //for padding
-                physics: BouncingScrollPhysics(),
+                physics: const BouncingScrollPhysics(),
                 child: Column(
                   children: [
                     Row(

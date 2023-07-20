@@ -1,8 +1,6 @@
 import 'dart:convert';
 import 'package:school/constants.dart';
-import 'dart:io';
 import 'package:intl/intl.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
@@ -98,10 +96,10 @@ class _ReportCardScreenState extends State<ReportCardScreen> {
                                   reportCard.violate,
                                   style: Theme.of(context)
                                       .textTheme
-                                      .titleMedium!
+                                      .titleLarge!
                                       .copyWith(
-                                        color: kTextBlackColor,
-                                        fontWeight: FontWeight.w900,
+                                        color: Colors.red,
+                                        fontWeight: FontWeight.bold,
                                       ),
                                 ),
                                 kHalfSizedBox,
