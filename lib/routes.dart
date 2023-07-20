@@ -1,6 +1,9 @@
+import 'package:school/screens/Document_screen/document_screen.dart';
+import 'package:school/screens/News_screen/NewsListScreen.dart';
 import 'package:school/screens/login_screen/login_screen.dart';
 import 'package:school/screens/splash_screen/splash_screen.dart';
 import 'package:flutter/cupertino.dart';
+import 'screens/News_screen/news_screen.dart';
 import 'screens/assignment_screen/assignment_screen.dart';
 import 'screens/datesheet_screen/datesheet_screen.dart';
 import 'screens/fee_screen/fee_screen.dart';
@@ -16,4 +19,7 @@ Map<String, WidgetBuilder> routes = {
   FeeScreen.routeName: (context) => FeeScreen(),
   AssignmentScreen.routeName: (context) => AssignmentScreen(),
   DateSheetScreen.routeName: (context) => DateSheetScreen(),
+  NewsScreen.routeName: (context) => NewsScreen(),
+  NewsListScreen.routeName: (context) => const NewsListScreen(),
+  DocumentScreen.routeName: (context) => const DocumentScreen(),
 };

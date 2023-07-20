@@ -1,4 +1,8 @@
+import 'package:school/components/menu_bottom.dart';
 import 'package:school/constants.dart';
+import 'package:school/screens/Document_screen/document_screen.dart';
+import 'package:school/screens/News_screen/NewsListScreen.dart';
+import 'package:school/screens/News_screen/news_screen.dart';
 import 'package:school/screens/assignment_screen/assignment_screen.dart';
 import 'package:school/screens/datesheet_screen/datesheet_screen.dart';
 import 'package:school/screens/fee_screen/fee_screen.dart';
@@ -15,6 +19,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: const MenuBottom(),
       body: Column(
         children: [
           //we will divide the screen into two parts
@@ -95,7 +100,7 @@ class HomeScreen extends StatelessWidget {
                         HomeCard(
                           onPress: () {},
                           icon: 'assets/icons/quiz.svg',
-                          title: 'Score',
+                          title: 'Xem điểm',
                         ),
                         HomeCard(
                           onPress: () {
@@ -112,14 +117,20 @@ class HomeScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         HomeCard(
-                          onPress: () {},
+                          onPress: () {
+                            Navigator.pushNamed(
+                                context, DocumentScreen.routeName);
+                          },
                           icon: 'assets/icons/holiday.svg',
-                          title: 'Document',
+                          title: 'Tài liệu',
                         ),
                         HomeCard(
-                          onPress: () {},
+                          onPress: () {
+                            Navigator.pushNamed(
+                                context, NewsListScreen.routeName);
+                          },
                           icon: 'assets/icons/timetable.svg',
-                          title: 'News',
+                          title: 'Tin tức ',
                         ),
                       ],
                     ),
@@ -137,7 +148,7 @@ class HomeScreen extends StatelessWidget {
                                 context, DateSheetScreen.routeName);
                           },
                           icon: 'assets/icons/datesheet.svg',
-                          title: 'Schedule',
+                          title: 'Xem TKB',
                         ),
                       ],
                     ),
