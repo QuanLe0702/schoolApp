@@ -41,7 +41,11 @@ dependencies:
   date_format: ^2.0.7
   intl: ^0.18.1
   http: ^0.13.5
-  flutter_pdfview: ^1.3.1
+  flutter_pdfview: ^1.1.0
+  flutter_cached_pdfview: ^0.4.2
+  syncfusion_flutter_xlsio: ^21.2.9
+  path_provider: ^2.0.15
+  excel: ^2.0.1
 
 dev_dependencies:
   flutter_test:
@@ -71,7 +75,6 @@ flutter:
     - assets/images/student_profile.jpeg
     - assets/images/pdf_icon.png
     - assets/images/excel.png
-    - assets/images/word_icon.svg
     - assets/icons/ask.svg
     - assets/icons/assignment.svg
     - assets/icons/datesheet.svg

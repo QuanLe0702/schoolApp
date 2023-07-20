@@ -7,6 +7,9 @@ import 'package:intl/intl.dart';
 import 'package:school/models/Document.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_pdfview/flutter_pdfview.dart';
+import 'package:school/screens/Document_screen/ExcelScreen.dart';
+
+import 'WordScreen.dart';
 
 class DocumentScreen extends StatefulWidget {
   static String routeName = 'DocumentScreen';
@@ -69,18 +72,37 @@ class _DocumentScreenState extends State<DocumentScreen> {
       },
     );
     if (response.statusCode == 200) {
-      // Lưu tệp tải xuống vào thiết bị
       final dir = await getApplicationDocumentsDirectory();
       final file = File('${dir.path}/$fileName');
       await file.writeAsBytes(response.bodyBytes);
 
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => PDFScreen(pdfPath: file.path),
-        ),
-      );
+      if (fileName.toLowerCase().endsWith(".pdf")) {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => PDFScreen(pdfPath: file.path),
+          ),
+        );
+      } else if (fileName.toLowerCase().endsWith(".xlsx")) {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ExcelScreen(excelPath: file.path),
+          ),
+        );
 
+        // } else if (fileName.toLowerCase().endsWith(".doc") ||
+        //     fileName.toLowerCase().endsWith(".docx")) {
+        //   // Xử lý tệp Word (DOC/DOCX)
+        //   Navigator.push(
+        //     context,
+        //     MaterialPageRoute(
+        //       builder: (context) => WordScreen(wordPath: file.path),
+        //     ),
+        //   );
+      } else {
+        print('Tệp không được hỗ trợ!');
+      }
       print('Tải xuống tệp $fileName thành công!');
     } else {
       print('Lỗi khi tải xuống tệp!');
@@ -152,7 +174,6 @@ class _DocumentScreenState extends State<DocumentScreen> {
                   final document = filteredDocumentList[index];
                   return GestureDetector(
                     onTap: () {
-                      // Xử lý khi nhấp vào một tài liệu
                     },
                     child: Container(
                       height: 150,
@@ -241,13 +262,13 @@ class _DocumentScreenState extends State<DocumentScreen> {
 class PDFScreen extends StatelessWidget {
   final String pdfPath;
 
-  const PDFScreen({super.key, required this.pdfPath});
+  const PDFScreen({Key? key, required this.pdfPath}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('PDF Viewer'),
+        title: const Text('Nội dung'),
       ),
       body: PDFView(
         filePath: pdfPath,
