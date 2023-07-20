@@ -15,6 +15,8 @@ late bool _passwordVisible;
 class LoginScreen extends StatefulWidget {
   static String routeName = 'LoginScreen';
 
+  const LoginScreen({super.key});
+
   @override
   _LoginScreenState createState() => _LoginScreenState();
 }
@@ -28,7 +30,6 @@ class _LoginScreenState extends State<LoginScreen> {
   //changes current state
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _passwordVisible = true;
   }
@@ -51,9 +52,10 @@ class _LoginScreenState extends State<LoginScreen> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Hi', style: Theme.of(context).textTheme.subtitle1),
+                      Text('Hi',
+                          style: Theme.of(context).textTheme.titleMedium),
                       Text('Sign in to continue',
-                          style: Theme.of(context).textTheme.subtitle2),
+                          style: Theme.of(context).textTheme.titleSmall),
                       sizedBox,
                     ],
                   ),
@@ -103,7 +105,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             textAlign: TextAlign.end,
                             style: Theme.of(context)
                                 .textTheme
-                                .subtitle2!
+                                .titleSmall!
                                 .copyWith(
                                     color: kPrimaryColor,
                                     fontWeight: FontWeight.w500),

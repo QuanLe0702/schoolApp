@@ -9,8 +9,8 @@ class StudentName extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Text('Hi ', style: Theme.of(context).textTheme.subtitle1),
-        Text(studentName, style: Theme.of(context).textTheme.subtitle1),
+        Text('Hi ', style: Theme.of(context).textTheme.titleMedium),
+        Text(studentName, style: Theme.of(context).textTheme.titleMedium),
       ],
     );
   }
@@ -21,7 +21,7 @@ class StudentClass extends StatelessWidget {
   final String studentClass;
   @override
   Widget build(BuildContext context) {
-    return Text(studentClass, style: Theme.of(context).textTheme.subtitle2);
+    return Text(studentClass, style: Theme.of(context).textTheme.titleSmall);
   }
 }
 
@@ -41,7 +41,7 @@ class StudentYear extends StatelessWidget {
       child: Center(
         child: Text(
           studentYear,
-          style: Theme.of(context).textTheme.subtitle2!.copyWith(
+          style: Theme.of(context).textTheme.titleSmall!.copyWith(
                 color: kTextBlackColor,
               ),
         ),
@@ -95,13 +95,13 @@ class StudentDataCard extends StatelessWidget {
           children: [
             Text(
               title,
-              style: Theme.of(context).textTheme.subtitle1!.copyWith(
+              style: Theme.of(context).textTheme.titleMedium!.copyWith(
                     color: kTextBlackColor,
                   ),
             ),
             Text(
               value,
-              style: Theme.of(context).textTheme.subtitle2!.copyWith(
+              style: Theme.of(context).textTheme.titleSmall!.copyWith(
                     color: kTextLightColor,
                   ),
             ),

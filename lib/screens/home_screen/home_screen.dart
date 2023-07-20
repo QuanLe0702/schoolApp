@@ -1,11 +1,19 @@
 import 'dart:convert';
 
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+
+import 'package:school/components/menu_bottom.dart';
+
 import 'package:school/constants.dart';
 import 'package:school/models/Student.dart';
-import 'package:school/screens/assignment_screen/assignment_screen.dart';
+// import 'package:school/screens/assignment_screen/assignment_screen.dart';
+import 'package:school/screens/Document_screen/document_screen.dart';
+import 'package:school/screens/News_screen/NewsListScreen.dart';
+import 'package:school/screens/Report_Card_screen/report_card_screen.dart';
+import 'package:school/screens/Score_screen/score_screen.dart';
+
 import 'package:school/screens/datesheet_screen/datesheet_screen.dart';
-import 'package:school/screens/fee_screen/fee_screen.dart';
+// import 'package:school/screens/fee_screen/fee_screen.dart';
 import 'package:school/screens/login_screen/login_screen.dart';
 import 'package:school/screens/my_profile/my_profile.dart';
 import 'package:flutter/material.dart';
@@ -42,14 +50,15 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: const MenuBottom(),
       body: Column(
         children: [
           //we will divide the screen into two parts
           //fixed height for first half
           Container(
             width: 100.w,
-            height: 40.h,
-            padding: EdgeInsets.all(kDefaultPadding),
+            height: 25.h,
+            padding: const EdgeInsets.all(kDefaultPadding),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -70,7 +79,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     kHalfSizedBox,
                     StudentPicture(
-                        picAddress: 'assets/images/student_profile.jpeg',
+                        picAddress: 'assets/images/student.png',
                         onPress: () {
                           // go to profile detail screen here
                           Navigator.pushNamed(
@@ -78,27 +87,6 @@ class _HomeScreenState extends State<HomeScreen> {
                         }),
                   ],
                 ),
-                sizedBox,
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    StudentDataCard(
-                      onPress: () {
-                        //go to attendance screen
-                      },
-                      title: 'Attendance',
-                      value: '90.02%',
-                    ),
-                    StudentDataCard(
-                      onPress: () {
-                        //go to fee due screen
-                        Navigator.pushNamed(context, FeeScreen.routeName);
-                      },
-                      title: 'Fees Due',
-                      value: '600\$',
-                    ),
-                  ],
-                )
               ],
             ),
           ),
@@ -113,25 +101,27 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               child: SingleChildScrollView(
                 //for padding
-                physics: BouncingScrollPhysics(),
+                physics: const BouncingScrollPhysics(),
                 child: Column(
                   children: [
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         HomeCard(
-                          onPress: () {},
+                          onPress: () {
+                            Navigator.pushNamed(context, ScoreView.routeName);
+                          },
                           icon: 'assets/icons/quiz.svg',
-                          title: 'Score',
+                          title: 'Xem điểm',
                         ),
                         HomeCard(
                           onPress: () {
                             //go to assignment screen here
                             Navigator.pushNamed(
-                                context, AssignmentScreen.routeName);
+                                context, ReportCardScreen.routeName);
                           },
                           icon: 'assets/icons/assignment.svg',
-                          title: 'Report',
+                          title: 'Hạnh kiểm',
                         ),
                       ],
                     ),
@@ -139,72 +129,33 @@ class _HomeScreenState extends State<HomeScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         HomeCard(
-                          onPress: () {},
+                          onPress: () {
+                            Navigator.pushNamed(
+                                context, DocumentScreen.routeName);
+                          },
                           icon: 'assets/icons/holiday.svg',
-                          title: 'Document',
+                          title: 'Tài liệu',
                         ),
                         HomeCard(
-                          onPress: () {},
+                          onPress: () {
+                            Navigator.pushNamed(
+                                context, NewsListScreen.routeName);
+                          },
                           icon: 'assets/icons/timetable.svg',
-                          title: 'News',
+                          title: 'Tin tức ',
                         ),
                       ],
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        HomeCard(
-                          onPress: () {},
-                          icon: 'assets/icons/result.svg',
-                          title: 'Evaluation record',
-                        ),
                         HomeCard(
                           onPress: () {
                             Navigator.pushNamed(
                                 context, DateSheetScreen.routeName);
                           },
                           icon: 'assets/icons/datesheet.svg',
-                          title: 'Schedule',
-                        ),
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        HomeCard(
-                          onPress: () {},
-                          icon: 'assets/icons/ask.svg',
-                          title: 'Class',
-                        ),
-                        HomeCard(
-                          onPress: () {},
-                          icon: 'assets/icons/gallery.svg',
-                          title: '',
-                        ),
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        HomeCard(
-                          onPress: () {},
-                          icon: 'assets/icons/resume.svg',
-                          title: 'Leave\nApplication',
-                        ),
-                        HomeCard(
-                          onPress: () {},
-                          icon: 'assets/icons/lock.svg',
-                          title: 'Change\nPassword',
-                        ),
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        HomeCard(
-                          onPress: () {},
-                          icon: 'assets/icons/event.svg',
-                          title: '',
+                          title: 'Xem TKB',
                         ),
                         HomeCard(
                           onPress: () {
