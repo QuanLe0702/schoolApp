@@ -70,39 +70,6 @@ class MyProfileScreen extends StatelessWidget {
                 ],
               ),
             ),
-            sizedBox,
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                ProfileDetailRow(
-                    title: 'Registration Number', value: '2020-ASDF-2021'),
-                ProfileDetailRow(title: 'Academic Year', value: '2020-2021'),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                ProfileDetailRow(title: 'Admission Class', value: 'X-II'),
-                ProfileDetailRow(title: 'Admission Number', value: '000126'),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                ProfileDetailRow(
-                    title: 'Date of Admission', value: '1 Aug, 2020'),
-                ProfileDetailRow(title: 'Date of Birth', value: '3 May 1998'),
-              ],
-            ),
-            sizedBox,
-            ProfileDetailColumn(
-              title: 'Email',
-              value: 'aisha12@gmail.com',
-            ),
-            ProfileDetailColumn(
-              title: 'Phone Number',
-              value: '+923066666666',
-            ),
           ],
         ),
       ),

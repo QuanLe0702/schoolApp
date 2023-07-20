@@ -3,7 +3,7 @@ import 'package:school/constants.dart';
 import 'package:school/screens/Document_screen/document_screen.dart';
 import 'package:school/screens/News_screen/NewsListScreen.dart';
 import 'package:school/screens/News_screen/news_screen.dart';
-import 'package:school/screens/assignment_screen/assignment_screen.dart';
+import 'package:school/screens/Report_Card_screen/report_card_screen.dart';
 import 'package:school/screens/datesheet_screen/datesheet_screen.dart';
 import 'package:school/screens/fee_screen/fee_screen.dart';
 import 'package:school/screens/my_profile/my_profile.dart';
@@ -26,7 +26,7 @@ class HomeScreen extends StatelessWidget {
           //fixed height for first half
           Container(
             width: 100.w,
-            height: 40.h,
+            height: 25.h,
             padding: EdgeInsets.all(kDefaultPadding),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -34,7 +34,7 @@ class HomeScreen extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    Column(
+                    const Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         StudentName(
@@ -56,27 +56,6 @@ class HomeScreen extends StatelessWidget {
                         }),
                   ],
                 ),
-                sizedBox,
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    StudentDataCard(
-                      onPress: () {
-                        //go to attendance screen
-                      },
-                      title: 'Attendance',
-                      value: '90.02%',
-                    ),
-                    StudentDataCard(
-                      onPress: () {
-                        //go to fee due screen
-                        Navigator.pushNamed(context, FeeScreen.routeName);
-                      },
-                      title: 'Fees Due',
-                      value: '600\$',
-                    ),
-                  ],
-                )
               ],
             ),
           ),
@@ -106,10 +85,10 @@ class HomeScreen extends StatelessWidget {
                           onPress: () {
                             //go to assignment screen here
                             Navigator.pushNamed(
-                                context, AssignmentScreen.routeName);
+                                context, ReportCardScreen.routeName);
                           },
                           icon: 'assets/icons/assignment.svg',
-                          title: 'Report',
+                          title: 'Hạnh kiểm',
                         ),
                       ],
                     ),
@@ -138,57 +117,12 @@ class HomeScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         HomeCard(
-                          onPress: () {},
-                          icon: 'assets/icons/result.svg',
-                          title: 'Evaluation record',
-                        ),
-                        HomeCard(
                           onPress: () {
                             Navigator.pushNamed(
                                 context, DateSheetScreen.routeName);
                           },
                           icon: 'assets/icons/datesheet.svg',
                           title: 'Xem TKB',
-                        ),
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        HomeCard(
-                          onPress: () {},
-                          icon: 'assets/icons/ask.svg',
-                          title: 'Class',
-                        ),
-                        HomeCard(
-                          onPress: () {},
-                          icon: 'assets/icons/gallery.svg',
-                          title: '',
-                        ),
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        HomeCard(
-                          onPress: () {},
-                          icon: 'assets/icons/resume.svg',
-                          title: 'Leave\nApplication',
-                        ),
-                        HomeCard(
-                          onPress: () {},
-                          icon: 'assets/icons/lock.svg',
-                          title: 'Change\nPassword',
-                        ),
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        HomeCard(
-                          onPress: () {},
-                          icon: 'assets/icons/event.svg',
-                          title: '',
                         ),
                         HomeCard(
                           onPress: () {},
