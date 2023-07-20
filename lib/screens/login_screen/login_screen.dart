@@ -186,7 +186,7 @@ class _LoginScreenState extends State<LoginScreen> {
         body: jsonEncode(body), headers: {'Content-Type': 'application/json'});
     // print(res.statusCode);
     if (res.statusCode == 200) {
-      final storage = new FlutterSecureStorage();
+      const storage = FlutterSecureStorage();
       // print(jsonDecode(res.body));
       LoginRes loginres = LoginRes.fromJson(jsonDecode(res.body));
       storage.write(key: 'token', value: loginres.token);
@@ -194,7 +194,6 @@ class _LoginScreenState extends State<LoginScreen> {
       storage.write(key: 'roles', value: loginres.roles);
       storage.write(key: 'uid', value: loginres.uid.toString());
       storage.write(key: 'id', value: loginres.id.toString());
-      // print(loginres.token);
       Navigator.pushNamedAndRemoveUntil(
           context, HomeScreen.routeName, (route) => false);
     } else {
