@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:school/constants.dart';
+import 'package:school/models/Student.dart';
 import 'package:school/screens/assignment_screen/assignment_screen.dart';
 import 'package:school/screens/datesheet_screen/datesheet_screen.dart';
 import 'package:school/screens/fee_screen/fee_screen.dart';
@@ -13,13 +14,33 @@ import 'package:sizer/sizer.dart';
 import 'widgets/student_data.dart';
 import 'package:http/http.dart' as http;
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
   static String routeName = 'HomeScreen';
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  String name = '';
+  String className = '';
+  String academicYear = '';
+  Future getData() async {
+    const storage = FlutterSecureStorage();
+    final id = await storage.read(key: 'id');
+    final token = await storage.read(key: 'token');
+    final uri = Uri.parse('http://10.0.2.2:8080/api/student/' + id.toString());
+    final resp = await http.post(uri, headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer $token'
+    });
+    if (resp.statusCode == 200) {
+      name = jsonEncode(resp.body);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
-    const flutterSecureStorage = FlutterSecureStorage();
     return Scaffold(
       body: Column(
         children: [
@@ -39,12 +60,12 @@ class HomeScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         StudentName(
-                          studentName: 'Quan',
+                          studentName: name,
                         ),
                         kHalfSizedBox,
-                        StudentClass(studentClass: 'Class 12A5| Roll no: 12'),
+                        StudentClass(studentClass: className),
                         kHalfSizedBox,
-                        StudentYear(studentYear: '2022-2023'),
+                        StudentYear(studentYear: academicYear),
                       ],
                     ),
                     kHalfSizedBox,
@@ -187,6 +208,7 @@ class HomeScreen extends StatelessWidget {
                         ),
                         HomeCard(
                           onPress: () {
+                            const flutterSecureStorage = FlutterSecureStorage();
                             flutterSecureStorage.deleteAll();
                             Navigator.pushNamed(context, LoginScreen.routeName);
                           },
@@ -203,17 +225,6 @@ class HomeScreen extends StatelessWidget {
         ],
       ),
     );
-  }
-
-  Future getData() async {
-    const storage = FlutterSecureStorage();
-    final id = await storage.read(key: 'id');
-    final token = await storage.read(key: 'token');
-    final uri = Uri.parse('http://10.0.2.2:8080/api/student/' + id.toString());
-    final res = await http.post(uri, headers: {
-      'Content-Type': 'application/json',
-      'Authorization': 'Bearer $token'
-    });
   }
 }
 
