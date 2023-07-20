@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 class Student {
   int? id;
   late String name;
@@ -10,7 +8,6 @@ class Student {
   late String phone;
   late String status;
   late String image;
-  // late Classes className;
 
   Student({
     this.id,
