@@ -1,12 +1,17 @@
+import 'dart:convert';
+
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:school/constants.dart';
 import 'package:school/screens/assignment_screen/assignment_screen.dart';
 import 'package:school/screens/datesheet_screen/datesheet_screen.dart';
 import 'package:school/screens/fee_screen/fee_screen.dart';
+import 'package:school/screens/login_screen/login_screen.dart';
 import 'package:school/screens/my_profile/my_profile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:sizer/sizer.dart';
 import 'widgets/student_data.dart';
+import 'package:http/http.dart' as http;
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -14,6 +19,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    const flutterSecureStorage = FlutterSecureStorage();
     return Scaffold(
       body: Column(
         children: [
@@ -180,7 +186,10 @@ class HomeScreen extends StatelessWidget {
                           title: '',
                         ),
                         HomeCard(
-                          onPress: () {},
+                          onPress: () {
+                            flutterSecureStorage.deleteAll();
+                            Navigator.pushNamed(context, LoginScreen.routeName);
+                          },
                           icon: 'assets/icons/logout.svg',
                           title: 'Logout',
                         ),
@@ -194,6 +203,17 @@ class HomeScreen extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  Future getData() async {
+    const storage = FlutterSecureStorage();
+    final id = await storage.read(key: 'id');
+    final token = await storage.read(key: 'token');
+    final uri = Uri.parse('http://10.0.2.2:8080/api/student/' + id.toString());
+    final res = await http.post(uri, headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer $token'
+    });
   }
 }
 
