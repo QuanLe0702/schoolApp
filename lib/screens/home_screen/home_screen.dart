@@ -42,9 +42,10 @@ class _HomeScreenState extends State<HomeScreen> {
       'Content-Type': 'application/json',
       'Authorization': 'Bearer $token'
     });
-    if (resp.statusCode == 200) {
-      name = jsonEncode(resp.body);
-    }
+    // if (resp.statusCode == 200) {
+    //   name = jsonEncode(resp.body);
+    //   setState(() {});
+    // }
   }
 
   @override

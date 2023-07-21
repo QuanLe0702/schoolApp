@@ -173,8 +173,7 @@ class _DocumentScreenState extends State<DocumentScreen> {
                 itemBuilder: (context, index) {
                   final document = filteredDocumentList[index];
                   return GestureDetector(
-                    onTap: () {
-                    },
+                    onTap: () {},
                     child: Container(
                       height: 150,
                       child: Card(
