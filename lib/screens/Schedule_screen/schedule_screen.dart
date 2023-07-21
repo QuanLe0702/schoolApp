@@ -224,7 +224,7 @@ class _ScheduleViewState extends State<ScheduleView> {
                             TableCell(
                               child: Center(
                                 child: Padding(
-                                  padding: EdgeInsets.all(6.0),
+                                  padding: const EdgeInsets.all(6.0),
                                   child: Text(
                                     dayOfWeek.name,
                                     style: const TextStyle(
@@ -247,7 +247,6 @@ class _ScheduleViewState extends State<ScheduleView> {
                                 child: Padding(
                                   padding: const EdgeInsets.all(6.0),
                                   child: Column(
-                                    // Thêm Column để chứa thông tin về tiết học và thời gian
                                     children: [
                                       Text(
                                         scheduleRow['lessonName'],
@@ -276,15 +275,46 @@ class _ScheduleViewState extends State<ScheduleView> {
                                 child: Center(
                                   child: Padding(
                                     padding: const EdgeInsets.all(6.0),
-                                    child: Text(
-                                      scheduleRow.containsKey(
-                                              dayOfWeek.id.toString())
-                                          ? '${scheduleRow[dayOfWeek.id.toString()]['subjectName']} - ${scheduleRow[dayOfWeek.id.toString()]['teacherName']}'
-                                          : '-',
-                                      style: const TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 12,
-                                      ),
+                                    child: Column(
+                                      children: [
+                                        const SizedBox(height: 6),
+                                        if (scheduleRow[dayOfWeek.id.toString()]
+                                                ['subjectName'] !=
+                                            '')
+                                          Column(
+                                            children: [
+                                              Text(
+                                                scheduleRow[dayOfWeek.id
+                                                    .toString()]['subjectName'],
+                                                style: const TextStyle(
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 12,
+                                                ),
+                                                textAlign: TextAlign.center,
+                                              ),
+                                              const SizedBox(height: 4),
+                                              Text(
+                                                scheduleRow[dayOfWeek.id
+                                                    .toString()]['teacherName'],
+                                                style: const TextStyle(
+                                                  color: Colors.black,
+                                                  fontSize: 9,
+                                                ),
+                                                textAlign: TextAlign.center,
+                                              ),
+                                            ],
+                                          )
+                                        else
+                                          const Text(
+                                            '-',
+                                            style: TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 12,
+                                            ),
+                                            textAlign: TextAlign.center,
+                                          ),
+                                      ],
                                     ),
                                   ),
                                 ),
