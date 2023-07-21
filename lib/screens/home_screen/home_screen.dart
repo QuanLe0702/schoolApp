@@ -8,9 +8,9 @@ import 'package:school/constants.dart';
 import 'package:school/screens/Document_screen/document_screen.dart';
 import 'package:school/screens/News_screen/NewsListScreen.dart';
 import 'package:school/screens/Report_Card_screen/report_card_screen.dart';
+import 'package:school/screens/Schedule_screen/schedule_screen.dart';
 import 'package:school/screens/Score_screen/score_screen.dart';
 import 'package:school/screens/datesheet_screen/datesheet_screen.dart';
-import 'package:school/screens/fee_screen/fee_screen.dart';
 import 'package:school/screens/login_screen/login_screen.dart';
 import 'package:school/screens/my_profile/my_profile.dart';
 import 'package:flutter/material.dart';
@@ -125,7 +125,7 @@ class HomeScreen extends StatelessWidget {
                         HomeCard(
                           onPress: () {
                             Navigator.pushNamed(
-                                context, DateSheetScreen.routeName);
+                                context, ScheduleView.routeName);
                           },
                           icon: 'assets/icons/datesheet.svg',
                           title: 'Xem TKB',
