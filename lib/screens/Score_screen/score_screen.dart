@@ -93,10 +93,11 @@ class _ScoreViewState extends State<ScoreView> {
 
         scoreTypes.forEach((scoreType) {
           final findScore = fetchedScoreData.firstWhere(
-              (score) =>
-                  score['subject']['id'] == subject.id &&
-                  score['scoreType']['id'] == scoreType.id,
-              orElse: () => null);
+            (score) =>
+                score['subject']['id'] == subject.id &&
+                score['scoreType']['id'] == scoreType.id,
+            orElse: () => null,
+          );
 
           if (findScore != null) {
             scoreRow[scoreType.id.toString()] = findScore['score'];
@@ -105,20 +106,18 @@ class _ScoreViewState extends State<ScoreView> {
           }
         });
 
-        return scoreRow;
-      }).toList();
-
-      for (var subject in subjects) {
+        // Tính điểm trung bình cho môn học nếu có ít nhất 6 loại điểm và điểm trung bình có giá trị hợp lệ.
         double sum = 0;
         double totalCoefficient = 0;
         int numScoreTypes = 0;
 
         scoreTypes.forEach((scoreType) {
           final findScore = fetchedScoreData.firstWhere(
-              (score) =>
-                  score['subject']['id'] == subject.id &&
-                  score['scoreType']['id'] == scoreType.id,
-              orElse: () => null);
+            (score) =>
+                score['subject']['id'] == subject.id &&
+                score['scoreType']['id'] == scoreType.id,
+            orElse: () => null,
+          );
 
           if (findScore != null) {
             sum += findScore['score'] * scoreType.coefficient;
@@ -127,12 +126,13 @@ class _ScoreViewState extends State<ScoreView> {
           }
         });
 
-        final average = (totalCoefficient > 0 && numScoreTypes >= 6)
-            ? (sum / totalCoefficient)
+        final average = totalCoefficient > 0 && numScoreTypes >= 6
+            ? sum / totalCoefficient
             : null;
+        scoreRow['average'] = average;
 
-        averageScores[subject.id!] = average;
-      }
+        return scoreRow;
+      }).toList();
     });
   }
 
@@ -307,13 +307,13 @@ class _ScoreViewState extends State<ScoreView> {
                                   child: Text(
                                     scoreRow['average'] != null
                                         ? scoreRow['average']!
-                                            .toStringAsFixed(2)
+                                            .toStringAsFixed(1)
                                         : '-',
                                     style: TextStyle(
                                       color: scoreRow['average'] != null
-                                          ? Colors.black
-                                          : Colors.red,
-                                      fontSize: 15,
+                                          ? Colors.red
+                                          : Colors.black,
+                                      fontSize: 13,
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
