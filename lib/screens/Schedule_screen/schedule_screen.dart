@@ -224,7 +224,7 @@ class _ScheduleViewState extends State<ScheduleView> {
                             TableCell(
                               child: Center(
                                 child: Padding(
-                                  padding: EdgeInsets.all(6.0),
+                                  padding: const EdgeInsets.all(6.0),
                                   child: Text(
                                     dayOfWeek.name,
                                     style: const TextStyle(
@@ -306,9 +306,9 @@ class _ScheduleViewState extends State<ScheduleView> {
                                             ],
                                           )
                                         else
-                                          Text(
+                                          const Text(
                                             '-',
-                                            style: const TextStyle(
+                                            style: TextStyle(
                                               color: Colors.black,
                                               fontSize: 12,
                                             ),
