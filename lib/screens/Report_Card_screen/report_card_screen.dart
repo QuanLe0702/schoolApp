@@ -27,6 +27,7 @@ class _ReportCardScreenState extends State<ReportCardScreen> {
     fetchData();
   }
 
+  //fetch student data through api
   Future<void> fetchData() async {
     FlutterSecureStorage storage = const FlutterSecureStorage();
     token = await storage.read(key: 'token');
