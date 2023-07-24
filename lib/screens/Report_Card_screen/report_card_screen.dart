@@ -99,7 +99,7 @@ class _ReportCardScreenState extends State<ReportCardScreen> {
                                       .textTheme
                                       .titleLarge!
                                       .copyWith(
-                                        color: Colors.red,
+                                        color: kErrorBorderColor,
                                         fontWeight: FontWeight.bold,
                                       ),
                                 ),
