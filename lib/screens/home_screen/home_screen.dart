@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 import 'package:school/components/menu_bottom.dart';
@@ -10,7 +8,6 @@ import 'package:school/screens/News_screen/NewsListScreen.dart';
 import 'package:school/screens/Report_Card_screen/report_card_screen.dart';
 import 'package:school/screens/Schedule_screen/schedule_screen.dart';
 import 'package:school/screens/Score_screen/score_screen.dart';
-import 'package:school/screens/datesheet_screen/datesheet_screen.dart';
 import 'package:school/screens/login_screen/login_screen.dart';
 import 'package:school/screens/my_profile/my_profile.dart';
 import 'package:flutter/material.dart';
@@ -42,7 +39,7 @@ class HomeScreen extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    Column(
+                    const Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         StudentName(
@@ -197,7 +194,7 @@ class HomeCard extends StatelessWidget {
             Text(
               title,
               textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.subtitle2,
+              style: Theme.of(context).textTheme.titleSmall,
             ),
           ],
         ),
