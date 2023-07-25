@@ -11,6 +11,7 @@ import 'package:school/screens/Document_screen/document_screen.dart';
 import 'package:school/screens/News_screen/NewsListScreen.dart';
 import 'package:school/screens/Report_Card_screen/report_card_screen.dart';
 import 'package:school/screens/Score_screen/score_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:school/screens/datesheet_screen/datesheet_screen.dart';
 // import 'package:school/screens/fee_screen/fee_screen.dart';
@@ -42,10 +43,15 @@ class _HomeScreenState extends State<HomeScreen> {
       'Content-Type': 'application/json',
       'Authorization': 'Bearer $token'
     });
-    // if (resp.statusCode == 200) {
-    //   name = jsonEncode(resp.body);
-    //   setState(() {});
-    // }
+    final SharedPreferences sharedPref = await SharedPreferences.getInstance();
+    if (resp.statusCode == 200) {
+      dynamic jsonData = jsonEncode(resp.body);
+      // Student student = Student.fromMap(jsonData);
+      sharedPref.setString('name', jsonData['name']);
+      //       sharedPref.setString(
+      //   'className', student.
+      // );
+    }
   }
 
   @override
@@ -72,10 +78,10 @@ class _HomeScreenState extends State<HomeScreen> {
                         StudentName(
                           studentName: name,
                         ),
-                        kHalfSizedBox,
-                        StudentClass(studentClass: className),
-                        kHalfSizedBox,
-                        StudentYear(studentYear: academicYear),
+                        // kHalfSizedBox,
+                        // StudentClass(studentClass: className),
+                        // kHalfSizedBox,
+                        // StudentYear(studentYear: academicYear),
                       ],
                     ),
                     kHalfSizedBox,
