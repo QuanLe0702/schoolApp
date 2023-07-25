@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:school/components/custom_buttons.dart';
 import 'package:school/constants.dart';
+import 'package:school/models/Student.dart';
 import 'package:school/screens/home_screen/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
@@ -188,7 +189,7 @@ class _LoginScreenState extends State<LoginScreen> {
         body: jsonEncode(body), headers: {'Content-Type': 'application/json'});
     // print(res.statusCode);
     if (res.statusCode == 200) {
-      final storage = new FlutterSecureStorage();
+      const storage = FlutterSecureStorage();
       // print(jsonDecode(res.body));
       LoginRes loginres = LoginRes.fromJson(jsonDecode(res.body));
       storage.write(key: 'token', value: loginres.token);
@@ -196,7 +197,21 @@ class _LoginScreenState extends State<LoginScreen> {
       storage.write(key: 'roles', value: loginres.roles);
       storage.write(key: 'uid', value: loginres.uid.toString());
       storage.write(key: 'id', value: loginres.id.toString());
-      // print(loginres.token);
+      // const storage = FlutterSecureStorage();
+      // final id = await storage.read(key: 'id');
+      // final token = await storage.read(key: 'token');
+      // final uri = Uri.parse('http://10.0.2.2:8080/api/student/' + id.toString());
+      // final resp = await http.post(uri, headers: {
+      //   'Content-Type': 'application/json',
+      //   'Authorization': 'Bearer $token'
+      // });
+      // if (resp.statusCode == 200) {
+      //   String list = jsonEncode(resp.body);
+      //   Student student = Student.fromMap(list);
+      //   storage.write(key: 'name', value: student.name);
+
+      //   setState(() {});
+      // }
       Navigator.pushNamedAndRemoveUntil(
           context, HomeScreen.routeName, (route) => false);
     } else {
