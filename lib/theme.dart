@@ -28,31 +28,32 @@ class CustomTheme {
       labelStyle: TextStyle(
           fontSize: 11.sp, color: kTextLightColor, fontWeight: FontWeight.w400),
       //hint style
-      hintStyle: TextStyle(fontSize: 16.0, color: kTextBlackColor, height: 0.5),
+      hintStyle:
+          const TextStyle(fontSize: 16.0, color: kTextBlackColor, height: 0.5),
       //we are using underline input border
       //not outline
-      enabledBorder: UnderlineInputBorder(
+      enabledBorder: const UnderlineInputBorder(
         borderSide: BorderSide(color: kTextLightColor, width: 0.7),
       ),
-      border: UnderlineInputBorder(
+      border: const UnderlineInputBorder(
         borderSide: BorderSide(color: kTextLightColor),
       ),
-      disabledBorder: UnderlineInputBorder(
+      disabledBorder: const UnderlineInputBorder(
         borderSide: BorderSide(color: kTextLightColor),
       ),
       // on focus  change color
-      focusedBorder: UnderlineInputBorder(
+      focusedBorder: const UnderlineInputBorder(
         borderSide: BorderSide(
           color: kPrimaryColor,
         ),
       ),
       //color changes when user enters wrong information,
       //we will use validators for this process
-      errorBorder: UnderlineInputBorder(
+      errorBorder: const UnderlineInputBorder(
         borderSide: BorderSide(color: kErrorBorderColor, width: 1.2),
       ),
       //same on focus error color
-      focusedErrorBorder: UnderlineInputBorder(
+      focusedErrorBorder: const UnderlineInputBorder(
         borderSide: BorderSide(
           color: kErrorBorderColor,
           width: 1.2,
@@ -61,26 +62,26 @@ class CustomTheme {
     ),
     textTheme: GoogleFonts.poppinsTextTheme().copyWith(
       //custom text for bodyText1
-      headline5: GoogleFonts.chewy(
+      headlineSmall: GoogleFonts.chewy(
         color: kTextWhiteColor,
         //condition if device is tablet or a phone
         fontSize: SizerUtil.deviceType == DeviceType.tablet ? 45.sp : 40.sp,
       ),
-      bodyText1: TextStyle(
+      bodyLarge: const TextStyle(
           color: kTextWhiteColor, fontSize: 35.0, fontWeight: FontWeight.bold),
-      bodyText2: TextStyle(
-        color: kTextWhiteColor,
+      bodyMedium: const TextStyle(
+        color: Colors.white,
         fontSize: 28.0,
       ),
-      subtitle1: TextStyle(
+      titleMedium: TextStyle(
           color: kTextWhiteColor,
           fontSize: SizerUtil.deviceType == DeviceType.tablet ? 14.sp : 17.sp,
           fontWeight: FontWeight.w700),
-      subtitle2: GoogleFonts.poppins(
+      titleSmall: GoogleFonts.poppins(
           color: kTextWhiteColor,
           fontSize: SizerUtil.deviceType == DeviceType.tablet ? 12.sp : 13.sp,
           fontWeight: FontWeight.w200),
-      caption: GoogleFonts.poppins(
+      bodySmall: GoogleFonts.poppins(
           color: kTextLightColor,
           fontSize: SizerUtil.deviceType == DeviceType.tablet ? 5.sp : 7.sp,
           fontWeight: FontWeight.w300),

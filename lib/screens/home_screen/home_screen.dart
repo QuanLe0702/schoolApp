@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 import 'package:school/components/menu_bottom.dart';
@@ -10,6 +8,7 @@ import 'package:school/models/Student.dart';
 import 'package:school/screens/Document_screen/document_screen.dart';
 import 'package:school/screens/News_screen/NewsListScreen.dart';
 import 'package:school/screens/Report_Card_screen/report_card_screen.dart';
+import 'package:school/screens/Schedule_screen/schedule_screen.dart';
 import 'package:school/screens/Score_screen/score_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -72,7 +71,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    Column(
+                    const Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         StudentName(
@@ -159,7 +158,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         HomeCard(
                           onPress: () {
                             Navigator.pushNamed(
-                                context, DateSheetScreen.routeName);
+                                context, ScheduleView.routeName);
                           },
                           icon: 'assets/icons/datesheet.svg',
                           title: 'Xem TKB',
@@ -221,7 +220,7 @@ class HomeCard extends StatelessWidget {
             Text(
               title,
               textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.subtitle2,
+              style: Theme.of(context).textTheme.titleSmall,
             ),
           ],
         ),

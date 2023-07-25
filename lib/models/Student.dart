@@ -7,7 +7,6 @@ class Student {
   late String address;
   late String phone;
   late String status;
-  late String image;
 
   Student({
     this.id,
@@ -18,7 +17,6 @@ class Student {
     required this.address,
     required this.phone,
     required this.status,
-    this.image = '',
   });
 
   Student.fromMap(Map<String, dynamic> map) {
@@ -30,7 +28,6 @@ class Student {
     address = map['address'];
     phone = map['phone'];
     status = map['status'];
-    image = map['image'];
   }
 
   Map<String, dynamic> toMap() {
@@ -43,7 +40,6 @@ class Student {
       'address': address,
       'phone': phone,
       'status': status,
-      'image': image,
     };
   }
 }
